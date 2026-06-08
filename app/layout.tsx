@@ -22,6 +22,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  // Extends content into iPhone notch / Dynamic Island safe area
+  viewportFit: "cover",
 };
 
 export const metadata: Metadata = {
@@ -40,31 +42,50 @@ export const metadata: Metadata = {
     "TypeScript",
     "Portfolio",
   ],
-  authors: [{ name: "Hassan" }],
-  creator: "Hassan",
+  authors:         [{ name: "Hassan" }],
+  creator:         "Hassan",
   applicationName: "Hassan Portfolio",
+
+  // ── iOS PWA ──────────────────────────────────────────────
+  // app/apple-icon.tsx auto-generates the <link rel="apple-touch-icon">
+  // so we only configure the behaviour here:
   appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-    title: "Portfolio",
+    capable:         true,
+    title:           "Portfolio",
+    statusBarStyle:  "black-translucent",
+    startupImage: [
+      // iPhone 14 Pro Max (430×932 @3x)
+      {
+        url: "/apple-icon",
+        media:
+          "(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)",
+      },
+      // iPhone 14 / 13 / 12 (390×844 @3x)
+      {
+        url: "/apple-icon",
+        media:
+          "(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)",
+      },
+      // iPhone SE / 8 (375×667 @2x)
+      {
+        url: "/apple-icon",
+        media:
+          "(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)",
+      },
+    ],
   },
+
+  // ── Open Graph / Twitter ─────────────────────────────────
   openGraph: {
-    title: "Hassan – Frontend Developer Portfolio",
-    description:
-      "Passionate Frontend Developer specializing in building exceptional digital experiences.",
-    type: "website",
-    locale: "en_US",
+    title:       "Hassan – Frontend Developer Portfolio",
+    description: "Passionate Frontend Developer specializing in building exceptional digital experiences.",
+    type:        "website",
+    locale:      "en_US",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Hassan – Frontend Developer Portfolio",
+    card:        "summary_large_image",
+    title:       "Hassan – Frontend Developer Portfolio",
     description: "Passionate Frontend Developer specializing in React, Next.js, and modern web.",
-  },
-  icons: {
-    icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
-    apple: "/icon.svg",
   },
 };
 
